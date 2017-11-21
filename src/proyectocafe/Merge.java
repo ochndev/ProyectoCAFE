@@ -5,13 +5,37 @@
  */
 package proyectocafe;
 
+import org.w3c.dom.Document;
+
 /**
  *
  * @author Hannibal
  */
 public class Merge extends Router{
     
-    private Document doc;
+    private Slot entrada1, entrada2, entrada3, salida;
+    
+    public Merge (Slot entrada1,Slot entrada2, Slot entrada3, Slot salida){
+        
+        
+            this.entrada1 = entrada1;
+            this.entrada2 = entrada2;
+            this.entrada3 = entrada3;
+            this.salida = salida;
+
+        
+    }
+    
+    public void Merge(){
+        
+        System.out.println("Actua la Tarea Merge");
+        salida.setDocument(entrada1.getDocument());
+        salida.setDocument(entrada2.getDocument());
+        salida.setDocument(entrada3.getDocument());
+        
+    }
+    
+
     
     
     
