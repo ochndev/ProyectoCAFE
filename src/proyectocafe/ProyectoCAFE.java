@@ -16,7 +16,12 @@ public class ProyectoCAFE {
     /**
      * @param args the command line arguments
      */
+    
+   
+    
     public static void main(String[] args) {
+        
+         Slot[] slots = new Slot[10];
         
         //Objeto Controlador XML
         ControladorXML conXML= new ControladorXML("src/FicheroEntrada/FicheroEntrada.xml");
