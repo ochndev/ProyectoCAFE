@@ -5,6 +5,7 @@
  */
 package proyectocafe;
 
+import java.util.ArrayList;
 import org.w3c.dom.Document;
 
 /**
@@ -13,14 +14,14 @@ import org.w3c.dom.Document;
  */
 public class Slots {
     
-    private Document doc;   
+    ArrayList<Document> buffer;
 
     Document getDocument() {
-        return doc;
+        return buffer.get(0);
     }
 
     void setDocument(Document doc) {
-        this.doc = doc;
+        buffer.add(doc);
     }
 
 }

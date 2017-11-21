@@ -11,4 +11,6 @@ package proyectocafe;
  */
 public class Aggregator extends Transformer {
     
+    
+    
 }

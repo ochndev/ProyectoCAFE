@@ -5,6 +5,9 @@
  */
 package proyectocafe;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 /**
@@ -21,14 +24,20 @@ public class ProyectoCAFE {
     
     public static void main(String[] args) {
         
-         Slot[] slots = new Slot[10];
+         Slots[] slots = new Slots[10];
         
         //Objeto Controlador XML
         ControladorXML conXML= new ControladorXML("src/FicheroEntrada/FicheroEntrada.xml");
         
+        
+        System.out.println("Ya he creado la base de datos");
+        
         ConexionBD CBD = new ConexionBD();
         
-        CamareroBebidasCalientes CBB = new CamareroBebidasCalientes(CBD);        
+        Bebida beb = new Bebida();
+        
+        CamareroBebidasCalientes CBB = new CamareroBebidasCalientes(CBD);
+            CBB.ConsultarDisponibilidad(beb, CBD);
         
         
         Document doc= conXML.LeerXML();

@@ -6,6 +6,9 @@
 package proyectocafe;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,35 +17,53 @@ import java.sql.*;
 public class CamareroBebidasCalientes {
     
     ConexionBD con;
+    ArrayList bebidas;
+    
     
     public CamareroBebidasCalientes(ConexionBD con){
-        
+        this.con = con;
     }
     
     
-    public boolean ConsultarDisponibilidad(Bebida bebida, ConexionBD con) throws SQLException{
-        
-        
-        int numero = 0;
-        String consulta = "SELECT COUNT(*) FROM BEBIDA WHERE nombre = '"+bebida.nombre+"' AND tipo = 'hot'";        
-        
-        Statement stmt = con.conn.createStatement();
-        
-        ResultSet RS = stmt.executeQuery(consulta);
-        
-        while(RS.next()){
-            numero = RS.getInt(1);
-        }
-        
-        RS.close();
-        stmt.close();
-        
-        if(numero > 0){
-            return true;
-        }else
-        {
-            return false;
-        }
+    public boolean ConsultarDisponibilidad(Bebida bebida, ConexionBD con){
+            
+            int numero = 0;
+            Statement stmt = null;
+            
+            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = '"+bebida.nombre+"' AND tipo = 'hot'";
+            
+            
+            try {
+                stmt = con.conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(CamareroBebidasCalientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            try {
+            ResultSet RS;
+            RS = stmt.executeQuery(consulta);
+            
+            while(RS.next()){
+                numero = RS.getInt(1);
+                System.out.println("El numero de bebidas calientes es: "+numero);
+            }
+            
+            RS.close();
+            stmt.close();
+            
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CamareroBebidasCalientes.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+            
+            if(numero > 0){
+                return true;
+            }else
+            {
+                return false;
+            }
         
     }
     

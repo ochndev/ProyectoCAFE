@@ -25,7 +25,7 @@ public class ConexionBD {
         }
            
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/DB?user=root&password=myPassword");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectocafe", "root", "");
         } catch (SQLException ex) {
             Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
         }

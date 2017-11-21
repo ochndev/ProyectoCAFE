@@ -13,16 +13,14 @@ import org.w3c.dom.Document;
  */
 public class Merge extends Router{
     
-    private Slot entrada1, entrada2, entrada3, salida;
+    private Slots entrada1, entrada2, entrada3, salida;
     
-    public Merge (Slot entrada1,Slot entrada2, Slot entrada3, Slot salida){
-        
+    public Merge (Slots entrada1,Slots entrada2, Slots entrada3, Slots salida){
         
             this.entrada1 = entrada1;
             this.entrada2 = entrada2;
             this.entrada3 = entrada3;
             this.salida = salida;
-
         
     }
     

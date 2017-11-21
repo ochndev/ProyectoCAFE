@@ -11,4 +11,14 @@ package proyectocafe;
  */
 public class Correlator extends Router{
     
+    private Slots entrada1, entrada2, salida1, salida2;
+    
+    public Correlator (Slots entrada1, Slots entrada2, Slots salida1, Slots salida2){
+        
+    }
+    
+    public void Correlacionar (){
+        
+    }
+    
 }
