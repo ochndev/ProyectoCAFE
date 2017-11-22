@@ -25,7 +25,11 @@ public class Merge extends Router{
     public void Merge(){
         
         for(int i = 0; i<entrada1.buffer.size(); i++){
-            salida.setDocument();
+            salida.setDocument(entrada1.buffer.get(i));
+        }
+        
+        for(int j = 0; j<entrada2.buffer.size(); j++){
+            salida.setDocument(entrada1.buffer.get(j));
         }
         
     }
