@@ -13,14 +13,14 @@ import org.w3c.dom.Document;
  */
 public class Replicator extends Router{
     
-    Document doc;
+    public Replicator (){
+    }
     
-    public Replicator (Slots in, Slots out1, Slots out2){
-        
-        doc = in.getDocument();
-        out1.setDocument(doc);
-        out2.setDocument(doc);
-        
-    }  
+    public void Replicar (Slots in, Slots out1, Slots out2){
+        for(int i = 0; i< in.buffer.size(); i++){
+            out1.setDocument(in.buffer.get(i));
+            out2.setDocument(in.buffer.get(i));
+        }
+    }
     
 }

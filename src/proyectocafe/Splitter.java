@@ -41,9 +41,10 @@ public class Splitter extends Transformer{
                 
                 // Consultas
                 NodeList nodos = (NodeList) xpath.evaluate(xPathExpression, doc, XPathConstants.NODESET);
-                for (int j=0;j<nodos.getLength();j++){
-			System.out.println(nodos.item(j).getNodeName()+" : " +
-                           nodos.item(j).getAttributes().getNamedItem("nombre"));
+                for (int j=0 ; j<nodos.getLength() ; j++){
+                    
+                    
+                    
 		}
                 
                 nodos.item(i).getTextContent();
