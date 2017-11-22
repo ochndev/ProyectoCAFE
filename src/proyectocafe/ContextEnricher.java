@@ -6,6 +6,9 @@
 package proyectocafe;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import org.w3c.dom.Document;
@@ -22,6 +25,9 @@ public class ContextEnricher extends Modifier{
     Slots salida;
     
     public ContextEnricher (Slots entrada, Slots salida){
+
+        this.entrada = entrada;
+        this.salida = salida;
         
     }
     
@@ -32,8 +38,6 @@ public class ContextEnricher extends Modifier{
     public void EnriquecerContexto(ArrayList<Bebida> AL, Document original){
         
         Bebida aux;
-        
-        
         
         for(int i = 0; i<AL.size(); i++){
             
@@ -69,8 +73,12 @@ public class ContextEnricher extends Modifier{
         
                     //Creacion del Document
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        try {
             javax.xml.transform.Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(Docfiltrado);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(ContextEnricher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            DOMSource source = new DOMSource(docenriquecido);
             
     }
     

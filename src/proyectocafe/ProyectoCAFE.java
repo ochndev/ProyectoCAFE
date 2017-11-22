@@ -30,17 +30,27 @@ public class ProyectoCAFE {
         ControladorXML conXML= new ControladorXML("src/FicheroEntrada/FicheroEntrada.xml");
         
         
-        System.out.println("Ya he creado la base de datos");
-        
+        //Conectamos la base de datos
         ConexionBD CBD = new ConexionBD();
+        CBD.Conexion();
         
+        //Creamos una bebida        
         Bebida beb = new Bebida();
         
-        CamareroBebidasCalientes CBB = new CamareroBebidasCalientes(CBD);
-            CBB.ConsultarDisponibilidad(beb, CBD);
+        // Creamos el conector CamareroBebidasCalientes
+        
+        CamareroBebidasCalientes CBC = new CamareroBebidasCalientes(CBD);
+        CBC.ConsultarDisponibilidad(beb, CBD);
+        
+        // Creamos el conector ControladorXML
+        conXML.LeerXML();
+        
+        CamareroBebidasFrias CBF = new CamareroBebidasFrias(CBD);
+        CBF.ConsultarDisponibilidad(beb, CBD);
+
         
         
-        Document doc= conXML.LeerXML();
+        Document doc = conXML.LeerXML();
         
     }
     

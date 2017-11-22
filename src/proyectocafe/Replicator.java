@@ -15,14 +15,12 @@ public class Replicator extends Router{
     
     Document doc;
     
-    public Replicator (Slots in, Slots out1, Slots out2, Slots out3){
+    public Replicator (Slots in, Slots out1, Slots out2){
         
         doc = in.getDocument();
         out1.setDocument(doc);
         out2.setDocument(doc);
-        out3.setDocument(doc);
         
-    }
-    
+    }  
     
 }

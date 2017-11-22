@@ -19,7 +19,7 @@ public class ConexionBD {
     
     void Conexion(){
         try {
-            Class.forName("mariadb-java-client-1.1.8");
+            Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
         }

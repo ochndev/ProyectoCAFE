@@ -30,7 +30,7 @@ public class CamareroBebidasCalientes {
             int numero = 0;
             Statement stmt = null;
             
-            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = '"+bebida.nombre+"' AND tipo = 'hot'";
+            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = 'Cafe' AND tipo = 'hot'";
             
             
             try {

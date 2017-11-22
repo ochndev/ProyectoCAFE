@@ -12,6 +12,7 @@ package proyectocafe;
 public class Connector {
 
     public Connector() {
+        
     } 
     
     
