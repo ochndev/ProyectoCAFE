@@ -24,9 +24,9 @@ public class Merge extends Router{
     
     public void Merge(){
         
-        System.out.println("Actua la Tarea Merge");
-        salida.setDocument(entrada1.getDocument());
-        salida.setDocument(entrada2.getDocument());
+        for(int i = 0; i<entrada1.buffer.size(); i++){
+            salida.setDocument();
+        }
         
     }
     
