@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Tareas;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,18 +52,17 @@ public class Splitter extends Transformer{
                     
                     // Consultas
                     NodeList nodos = (NodeList) xpath.evaluate(xPathExpression, doc, XPathConstants.NODESET);
+                    
+                    //Por cada nodo en la lista crea un documento y lo añade al buffer
+                    
                     for (int j=0 ; j<nodos.getLength() ; j++){
                         
                         Document doc1 = dBuilder.newDocument();
+                        doc1.adoptNode(nodos.item(i));
+                        salida.setDocument(doc1);
                         
-                       jjh
-                                
                     }
                     
-                    nodos.item(i).getTextContent();
-                    
-                    salida.setDocument(doc);
-
             }
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Splitter.class.getName()).log(Level.SEVERE, null, ex);

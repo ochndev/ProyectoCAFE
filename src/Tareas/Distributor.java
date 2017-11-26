@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Tareas;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -36,9 +36,8 @@ public class Distributor extends Router {
 
     }
 
-    public Distributor(Document doc, Slots in, Slots out1, Slots out2) {
+    public Distributor(Slots in, Slots out1, Slots out2) {
 
-        this.doc = doc;
         this.in = in;
         this.out1 = out1;
         this.out2 = out2;
@@ -52,7 +51,7 @@ public class Distributor extends Router {
 
     public void Distribuir(Slots entrada, Slots salida1,Slots salida2) {
         
- String compara;
+        String compara;
         
         for(int i = 0 ; i < entrada.buffer.size(); i++)
         {        

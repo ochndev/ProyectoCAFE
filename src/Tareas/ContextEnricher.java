@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Tareas;
 
+import basededatos.Bebida;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,30 +41,16 @@ public class ContextEnricher extends Modifier{
         Bebida aux;
         
         for(int i = 0; i<AL.size(); i++){
-            
-            AL.get(i).isDisponible();
-                      
-            
-                            Element drinkElement = docenriquecido.createElement("drink");
-                            drinkElement.appendChild(drinkElement);
+                Element drinkElement = docenriquecido.createElement("drink");
+                drinkElement.appendChild(drinkElement);
+                           
+                Element nameElement = docenriquecido.createElement("name");
+                nameElement.appendChild(docenriquecido.createTextNode(AL.get(i).getNombre()));
+                drinkElement.appendChild(nameElement);
                             
-                            Element nameElement = docenriquecido.createElement("name");
-                            nameElement.appendChild(docenriquecido.createTextNode(AL.get(i).nombre));
-                            drinkElement.appendChild(nameElement);
-                            
-                            Element availableElement = docenriquecido.createElement("availability");
-                            if(AL.get(i).disponible){
-                                availableElement.appendChild(docenriquecido.createTextNode("yes"));
-                            }
-                            else{
-                                availableElement.appendChild(docenriquecido.createTextNode("no"));
-                                }
-
-                            drinkElement.appendChild(availableElement);
-                            //Elemento name
-
-
-
+                Element availableElement = docenriquecido.createElement("availability");
+                nameElement.appendChild(docenriquecido.createTextNode(AL.get(i).getNombre()));
+                drinkElement.appendChild(availableElement);
             
         }
         

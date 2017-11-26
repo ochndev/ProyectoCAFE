@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Conectores;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -27,13 +27,15 @@ import org.w3c.dom.NodeList;
  * @author usuario
  */
 public class ControladorXML {
-    private String inputFile;
+    private String inputFile, outputFile;
 
-    public ControladorXML(String inputFile) {
+    public ControladorXML(String inputFile, String outputFile) {
         this.inputFile = inputFile;
+        this.outputFile = outputFile;
     }
     
     public Document LeerXML(){
+        
         Document doc;
         
         try {
@@ -56,6 +58,7 @@ public class ControladorXML {
     }
     
     public void EscribirXML(Document doc) throws TransformerException {
+        
         String nom_fich= "src/FicheroSalida/FicheroSalida.xml";
         
         try {    

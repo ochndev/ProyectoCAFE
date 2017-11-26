@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Tareas;
 
 import org.w3c.dom.Document;
 
@@ -24,11 +24,9 @@ public class Translator extends Transformer {
     }
     
     public void Translate(){
-        
-        doc = entrada.getDocument();
-        
+                
         for (int i = 0; i < entrada.buffer.size(); i++) {
-            doc = entrada.getDocument();
+            doc = entrada.getDocument(i);
             salida.setDocument(doc);
         }
         

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Tareas;
 
 import org.w3c.dom.Document;
 
@@ -14,6 +14,7 @@ import org.w3c.dom.Document;
 public class Replicator extends Router{
     
     public Replicator (){
+        
     }
     
     public void Replicar (Slots in, Slots out1, Slots out2){

@@ -3,24 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package Conectores;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import basededatos.Bebida;
+import basededatos.ConexionBD;
 
 /**
  *
  * @author Hannibal
  */
-public class CamareroBebidasCalientes {
+public class CamareroBebidasFrias {
     
     ConexionBD con;
     ArrayList bebidas;
     
     
-    public CamareroBebidasCalientes(ConexionBD con){
+    public CamareroBebidasFrias(ConexionBD con){
         this.con = con;
     }
     
@@ -30,15 +34,14 @@ public class CamareroBebidasCalientes {
             int numero = 0;
             Statement stmt = null;
             
-            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = 'Cafe' AND tipo = 'hot'";
+            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = 'CocaCola' AND tipo = 'cold'";
             
             
             try {
-                stmt = con.conn.createStatement();
+                stmt = con.getConnection().createStatement();
             } catch (SQLException ex) {
                 Logger.getLogger(CamareroBebidasCalientes.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
             
             try {
             ResultSet RS;
@@ -46,7 +49,7 @@ public class CamareroBebidasCalientes {
             
             while(RS.next()){
                 numero = RS.getInt(1);
-                System.out.println("El numero de bebidas calientes es: "+numero);
+                System.out.println("El numero de bebidas frias es: "+numero);
             }
             
             RS.close();

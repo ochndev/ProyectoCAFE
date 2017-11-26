@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package basededatos;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Bebida {
     
     String nombre;
     String tipo;
-    boolean disponible;
+    String disponible;
     
     public Bebida(){
         
@@ -40,11 +40,11 @@ public class Bebida {
         this.tipo = tipo;
     }
 
-    public boolean isDisponible() {
+    public String getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(boolean disponible) {
+    public void setDisponible(String disponible) {
         this.disponible = disponible;
     }
     

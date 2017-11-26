@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocafe;
+package basededatos;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -15,9 +15,9 @@ import java.util.logging.Logger;
  */
 public class ConexionBD {
     
-    Connection conn;
+    private Connection conn;
     
-    void Conexion(){
+    public void Conexion(){
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
@@ -32,7 +32,11 @@ public class ConexionBD {
         
     }
     
-    void Desconexion(){
+    public Connection getConnection(){
+        return conn;
+    }
+    
+    public void Desconexion(){
         
         try {
             conn.close();
