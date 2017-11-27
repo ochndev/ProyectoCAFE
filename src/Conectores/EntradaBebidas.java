@@ -22,11 +22,9 @@ public class EntradaBebidas {
     
     public void LeerComanda(Slots Salida){
         
-        // Leo el documento XML de entrada a través del Controlador XML
-        Document doc = conXML.LeerXML();
-        
+        // Leo el documento XML de entrada a través del Controlador XML        
         // Escribo el documento generado en el buffer
-        Salida.setDocument(doc);
+        Salida.setDocument(conXML.LeerXML());
         
     }
     

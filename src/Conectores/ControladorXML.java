@@ -36,7 +36,7 @@ public class ControladorXML {
     
     public Document LeerXML(){
         
-        Document doc;
+        Document doc=null;
         
         try {
             File inputFile = new File(this.inputFile);
@@ -49,10 +49,7 @@ public class ControladorXML {
             
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
-        
-        
         
         return doc;
     }

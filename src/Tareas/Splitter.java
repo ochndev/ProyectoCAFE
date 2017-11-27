@@ -15,6 +15,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -33,32 +35,36 @@ public class Splitter extends Transformer{
     
     public void Splittear() throws XPathExpressionException{
         
-        Document doc;
         
         try {
-            String xPathExpression = "/cafe_order/drinks/drink";
-            
+            String xPathExpression = "/cafe_order/drinks";            
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
-            
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            
+            Document doc1 = dBuilder.newDocument();
             
             
             for(int i=0; i<entrada.buffer.size() ; i++){
-                    doc = entrada.buffer.get(i);
-
-                    // Preparación de xpath
-                    XPath xpath = XPathFactory.newInstance().newXPath();
-                    
-                    // Consultas
-                    NodeList nodos = (NodeList) xpath.evaluate(xPathExpression, doc, XPathConstants.NODESET);
-                    
-                    //Por cada nodo en la lista crea un documento y lo añade al buffer
-                    
+                
+                doc = entrada.getDocument(i);
+                
+                NodeList nodos = doc.getElementsByTagName("drink");
+                
                     for (int j=0 ; j<nodos.getLength() ; j++){
                         
-                        Document doc1 = dBuilder.newDocument();
-                        doc1.adoptNode(nodos.item(i));
+                        Node nod = nodos.item(i);
+                
+                    Element drinkElement = doc1.createElement("drink");
+                    doc1.appendChild(drinkElement);
+                           
+                    Element nameElement = doc1.createElement("name");
+                    nameElement.appendChild(doc1.createTextNode(nodos.item(i).getNodeValue()));
+                    drinkElement.appendChild(nameElement);
+                
+                    Element typeElement = doc1.createElement("type");
+                    typeElement.appendChild(doc1.createTextNode(nodos.item(i).getNodeValue()));
+                    drinkElement.appendChild(typeElement);
+                
+                        System.out.println(doc1.getElementsByTagName("*").item(i).getTextContent());
                         salida.setDocument(doc1);
                         
                     }

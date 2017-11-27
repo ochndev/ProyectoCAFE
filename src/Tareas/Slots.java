@@ -19,6 +19,12 @@ public class Slots {
     ArrayList<String> bufferString;
     ArrayList<Object> bufferObject;
 
+    public Slots(){
+        buffer = new ArrayList<Document>();
+        bufferString = new ArrayList<String>();
+        bufferObject = new ArrayList<Object>();
+    }
+    
     public int buffersize(){
         return bufferObject.size();
     }

@@ -41,23 +41,18 @@ public class Distributor extends Router {
         this.in = in;
         this.out1 = out1;
         this.out2 = out2;
-
-//        XPath xpath = XPathFactory.newInstance().newXPath();
-//        NodeList nodes = (NodeList)xpath.evaluate(condicionXPATH, doc.getDocumentElement(),XPathConstants.NODOSET);
-//        for(int i = 0; i < nodes.getLength(); i++){
-//            Element e = (Element) nodes.item(i);
-//        }
+        
     }
 
-    public void Distribuir(Slots entrada, Slots salida1,Slots salida2) {
+    public void Distribuir(Slots entrada, Slots salida1, Slots salida2) {
         
-        String compara;
+        String compara="";
         
-        for(int i = 0 ; i < entrada.buffer.size(); i++)
-        {        
-           compara = entrada.buffer.get(i).getElementsByTagName("type").item(0).getTextContent();
+        for(int i = 0 ; i < entrada.buffer.size(); i++){
+            
+            System.out.println(entrada.getDocument(i).getElementsByTagName("*").item(0).getTextContent());
         
-            if(compara.compareTo(" cold ") == 0){
+            if(compara.compareTo("cold") == 0){
                 salida1.setDocument(entrada.buffer.get(i));
             }
             else{
