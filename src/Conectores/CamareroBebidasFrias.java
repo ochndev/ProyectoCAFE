@@ -5,6 +5,7 @@
  */
 package Conectores;
 
+import Tareas.Slots;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -68,6 +69,10 @@ public class CamareroBebidasFrias {
                 return false;
             }
         
+    }
+
+    public void EjecutarQuerys(Slots slot, Slots slot0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

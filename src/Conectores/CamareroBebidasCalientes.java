@@ -5,6 +5,7 @@
  */
 package Conectores;
 
+import Tareas.Slots;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,21 +20,25 @@ import basededatos.ConexionBD;
 public class CamareroBebidasCalientes {
     
     ConexionBD con;
-    ArrayList bebidas;
     
     
     public CamareroBebidasCalientes(ConexionBD con){
         this.con = con;
     }
     
+    public void EjecutarQuerys(Slots IN, Slots OUT){
+        
+        for (int i = 0; i < IN.buffersize(); i++) {
+            OUT.setObject(ConsultarDisponibilidad(IN.getString(i),con));            
+        }
+        
+    }
     
-    public boolean ConsultarDisponibilidad(Bebida bebida, ConexionBD con){
+    
+    public boolean ConsultarDisponibilidad(String consulta, ConexionBD con){
             
             int numero = 0;
-            Statement stmt = null;
-            
-            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = 'Cafe' AND tipo = 'hot'";
-            
+            Statement stmt = null;           
             
             try {
                 stmt = con.getConnection().createStatement();

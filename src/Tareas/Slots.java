@@ -16,13 +16,35 @@ import org.w3c.dom.Node;
 public class Slots {
     
     ArrayList<Document> buffer;
+    ArrayList<String> bufferString;
+    ArrayList<Object> bufferObject;
 
+    public int buffersize(){
+        return bufferObject.size();
+    }
+    
+    public Object getObject(int i){
+        return bufferObject.get(i);
+    }
+    
+    public void setObject(Object Obj){
+        this.bufferObject.add(Obj);
+    }
+    
     public Document getDocument(int i) {
         return buffer.get(i);
     }
 
     public void setDocument(Document doc) {
         buffer.add(doc);
+    }
+    
+    public String getString(int i) {
+        return bufferString.get(i);
+    }
+
+    public void setString(String doc) {
+        bufferString.add(doc);
     }
 
 }

@@ -10,6 +10,7 @@ import basededatos.ConexionBD;
 import basededatos.Bebida;
 import Conectores.*;
 import Tareas.*;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class ProyectoCAFE {
         String xslFilename = "src/FicheroXSL/FicheroXSL.xsl";
         
         //Creamos e inicializamos los slots
-        Slots[] slots = new Slots[10];
+        Slots[] slots = new Slots[16];
         for (int i = 0; i < slots.length; i++) {
             slots[i] = new Slots();            
         }
@@ -52,12 +53,10 @@ public class ProyectoCAFE {
         // Creamos el conector CamareroBebidasCalientes
         
         CamareroBebidasCalientes CBC = new CamareroBebidasCalientes(CBD);
-        CBC.ConsultarDisponibilidad(beb, CBD);
         
        // Creamos el conector CamareroBebidasFrias       
         
         CamareroBebidasFrias CBF = new CamareroBebidasFrias(CBD);
-        CBF.ConsultarDisponibilidad(beb, CBD);
         
         // Creamos el conector EntradaBebidas
         EntradaBebidas EB = new EntradaBebidas(conXML);
@@ -88,47 +87,56 @@ public class ProyectoCAFE {
         //Creamos los replicators y replicamos las bebidas frias y calientes respectivamente
         Replicator REP1 = new Replicator();
         REP1.Replicar(slots[3], slots[5], slots[6]);
+        
         Replicator REP2 = new Replicator();
         REP2.Replicar(slots[4], slots[7], slots[8]);
         
         //Traducimos para acceder a la base de datos        
-        Translator TSL2 = new Translator(slots[5],slots[9]);
-        TSL2.Translate();
+        TranslatorSQL TSL2 = new TranslatorSQL(slots[5],slots[9]);
+        TSL2.translate();
         
         //Consultamos bebidas calientes
-        CBC.
+        CBC.EjecutarQuerys(slots[9], slots[11]);
 
-        //Correlacionamos
-        
-        
+        //Correlacionamos        
+        Correlator CRL1 = new Correlator(slots[9], slots[11],slots[13],slots[14]);
+        CRL1.Correlacionar();
         
         //Enriquecemos
-        
+        ContextEnricher CEN1 = new ContextEnricher(slots[13],slots[14],slots[15]);
+        CEN1.EnriquecerContexto();
         
                 
         //Traducimos para obtener acceder a BD de bebidas frias        
-        
-        Translator TSL3 = new Translator(slots[7], slots[10]);
+        TranslatorSQL TSL3 = new TranslatorSQL(slots[7], slots[10]);
         TSL3.translate();
                 
         //Consultamos bebidas frias
+        CBF.EjecutarQuerys(slots[10],slots[16]);
                 
         //Correlacionamos
-                
+        Correlator CRL2 = new Correlator(slots[10],slots[16],slots[17],slots[18]);
+        CRL2.Correlacionar();
+        
         //Enriquecemos
-                
+        ContextEnricher CEN = new ContextEnricher(slots[17],slots[18],slots[19]);
+        CEN.EnriquecerContexto();
+       
         //Mezclamos
-        Merge MRG = new Merge(slots,slots,slots);
-        MRG.Mezcla();
+        Merge MRG = new Merge(slots[15],slots[19],slots[20]);
+        MRG.Merge();
         
         
-        // Agregamos
-        Aggregator AGG = new Aggregator();
-        AGG.Aggregate(xslFilename);
+        // Agregamos utilizando un estilo 
+        Aggregator AGG = new Aggregator(slots[20],slots[21]);
+        try {
+            AGG.Aggregate(xslFilename);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        //Por ultimo generamos el archivo XML final con el conector SalidaBebidas
-                
-                
+        //Por ultimo generamos el archivo XML final con el conector SalidaBebidas        
+        SB.EscribirBebidasDisponibles(slots[21]);                
                 
         //Cerramos la base de datos
         CBD.Desconexion();

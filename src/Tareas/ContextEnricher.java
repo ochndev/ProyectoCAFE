@@ -22,34 +22,30 @@ import org.w3c.dom.Element;
 public class ContextEnricher extends Modifier{
     
     Document docenriquecido;
-    Slots entrada;
+    Slots entrada1, entrada2;
     Slots salida;
     
-    public ContextEnricher (Slots entrada, Slots salida){
+    public ContextEnricher (Slots entrada1,Slots entrada2, Slots salida){
 
-        this.entrada = entrada;
+        this.entrada1 = entrada1;
+        this.entrada2 = entrada2;
         this.salida = salida;
         
     }
     
-    public ContextEnricher(){
+    public void EnriquecerContexto(){
         
-    }
-    
-    public void EnriquecerContexto(ArrayList<Bebida> AL, Document original){
-        
-        Bebida aux;
-        
-        for(int i = 0; i<AL.size(); i++){
+        for(int i = 0; i<entrada1.buffer.size(); i++){
+                
                 Element drinkElement = docenriquecido.createElement("drink");
                 drinkElement.appendChild(drinkElement);
                            
                 Element nameElement = docenriquecido.createElement("name");
-                nameElement.appendChild(docenriquecido.createTextNode(AL.get(i).getNombre()));
+                nameElement.appendChild(docenriquecido.createTextNode(entrada1.getDocument(i).getElementsByTagName("name").item(0).getTextContent()));
                 drinkElement.appendChild(nameElement);
                             
                 Element availableElement = docenriquecido.createElement("availability");
-                nameElement.appendChild(docenriquecido.createTextNode(AL.get(i).getNombre()));
+                nameElement.appendChild(docenriquecido.createTextNode(entrada1.getDocument(i).getElementsByTagName("availability").item(0).getTextContent()));
                 drinkElement.appendChild(availableElement);
             
         }
