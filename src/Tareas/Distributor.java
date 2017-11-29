@@ -54,16 +54,16 @@ public class Distributor extends Router {
         
         String compara="";
         
-        for(int i = 0 ; i < entrada.buffer.size(); i++){
+        for(int i = 0 ; i < entrada.tamanyo(); i++){
             doc = entrada.getDocument(i);
             
             System.out.println("Distribuidor: "+doc.getTextContent());
         
             if(compara.compareTo("cold") == 0){
-                salida1.setDocument(entrada.buffer.get(i));
+                salida1.setDocument(entrada.getDocument(i));
             }
             else{
-                salida2.setDocument(entrada.buffer.get(i));
+                salida2.setDocument(entrada.getDocument(i));
             }
         }
         

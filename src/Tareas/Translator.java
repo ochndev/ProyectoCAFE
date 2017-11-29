@@ -33,10 +33,8 @@ public class Translator extends Transformer {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
         doc = dBuilder.newDocument();
         
-        for (int i = 0; i < entrada.buffer.size(); i++) {
-            doc = entrada.getDocument(i);
-            System.out.println("En el Translator"+doc.getTextContent());
-            
+        for (int i = 0; i < entrada.tamanyo(); i++) {
+            doc = entrada.getDocument(i);           
             salida.setDocument(doc);
         }
         

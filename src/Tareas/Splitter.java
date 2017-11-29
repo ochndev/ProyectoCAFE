@@ -42,23 +42,35 @@ public class Splitter extends Transformer{
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
             
-            Document doc = dBuilder.newDocument();
+            //Document doc = dBuilder.newDocument();
             
-            for(int i=0; i<entrada.buffer.size() ; i++){
-
+            
+            for(int i=0; i<entrada.tamanyo(); i++){
+                System.out.println("Splitter, cosas en el buffer: "+entrada.tamanyo());
                 doc = entrada.getDocument(i);
                 
                 NodeList nodos = doc.getElementsByTagName("drink");
-                
-                    for (int j=0 ; j<nodos.getLength() ; j++){
+                System.out.println("Splitter Tamaño buffer: "+i+"Nodos: "+nodos.getLength());
+                    for (int j=0 ; j<nodos.getLength(); j++){
+
+                        
                         Document doc1 = dBuilder.newDocument();
                         Node nod = nodos.item(j);
-                       
+                        NodeList typeList = doc1.getElementsByTagName("type");
+                        nodos.item(j);
+                        
+                        ary ñ oq he
+                        
+                        System.out.println("Splitter, nombre de nodo: "+nod.getTextContent());//Hasta aqui funciona
+                        if (nod.getNodeType() == nod.ELEMENT_NODE) {
+                            Element be= (Element) nod;
+                            System.out.println("+++Splitter, bebidas: "+be.getTextContent());
+                        }
+                        
+                        
                         Element bebida = null;
                         
-                        if (nod.getNodeType() == nod.ELEMENT_NODE) {
-                        bebida = (Element) nod;
-                        }
+
                         
                         
                         String nombre = "";

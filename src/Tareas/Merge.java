@@ -28,7 +28,7 @@ public class Merge extends Router{
   
         this.entrada1 = entrada1;
         this.entrada2 = entrada2;
-            this.salida = salida;        
+        this.salida = salida;        
     }
     
     public void Merge() throws ParserConfigurationException{
@@ -40,14 +40,14 @@ public class Merge extends Router{
         doc_salida = dBuilder.newDocument();
 
         
-        for(int i = 0; i<entrada1.buffer.size(); i++){
-            doc_entrada1 = entrada1.buffer.get(i);
+        for(int i = 0; i<entrada1.tamanyo(); i++){
+            doc_entrada1 = entrada1.getDocument(i);
             System.out.println("Merge: "+doc_entrada1.getTextContent());
-            salida.setDocument(entrada1.buffer.get(i));
+            salida.setDocument(entrada1.getDocument(i));
         }
         
-        for(int j = 0; j<entrada2.buffer.size(); j++){
-            salida.setDocument(entrada1.buffer.get(j));
+        for(int j = 0; j<entrada2.tamanyo(); j++){
+            salida.setDocument(entrada1.getDocument(j));
         }
         
     }

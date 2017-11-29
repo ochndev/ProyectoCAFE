@@ -15,9 +15,10 @@ import org.w3c.dom.Node;
  */
 public class Slots {
     
-    ArrayList<Document> buffer;
-    ArrayList<String> bufferString;
-    ArrayList<Object> bufferObject;
+   // ArrayList<Document> buffer;
+    private ArrayList<String> bufferString;
+    private ArrayList<Object> bufferObject;
+    private ArrayList<Document> buffer;
 
     public Slots(){
         buffer = new ArrayList<>();
@@ -38,8 +39,6 @@ public class Slots {
     }
     
     public Document getDocument(int i) {
-        
-        System.out.println("El documento "+i+" tiene: "+buffer.get(i).getTextContent());
         return buffer.get(i);
     }
 
@@ -53,6 +52,10 @@ public class Slots {
 
     public void setString(String doc) {
         bufferString.add(doc);
+    }
+    
+    public int tamanyo(){
+        return buffer.size();
     }
 
 }

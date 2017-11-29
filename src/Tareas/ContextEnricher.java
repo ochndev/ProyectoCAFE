@@ -44,7 +44,7 @@ public class ContextEnricher extends Modifier{
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
         docenriquecido = dBuilder.newDocument();
         
-        for(int i = 0; i<entrada1.buffer.size(); i++){
+        for(int i = 0; i<entrada1.tamanyo(); i++){
                 
                 Element drinkElement = docenriquecido.createElement("drink");
                 drinkElement.appendChild(drinkElement);

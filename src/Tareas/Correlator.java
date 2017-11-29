@@ -33,11 +33,11 @@ public class Correlator extends Router{
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
         
-        for (int i = 0; i < entrada1.buffer.size(); i++) {
+        for (int i = 0; i < entrada1.buffersize(); i++) {
             
             Document doc = dBuilder.newDocument();
             
-            if((boolean)entrada2.bufferObject.get(i)){
+            if((boolean)entrada2.getObject(i)){
                 disponibilidad = "yes";
             }
             else disponibilidad = "no";

@@ -32,7 +32,7 @@ public class TranslatorSQL {
     
     public void translate() throws ParserConfigurationException{
         
-        for (int i = 0; i < IN.buffer.size(); i++) {
+        for (int i = 0; i < IN.buffersize(); i++) {
             
                     
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
