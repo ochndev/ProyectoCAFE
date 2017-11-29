@@ -5,6 +5,9 @@
  */
 package Tareas;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -23,12 +26,17 @@ public class Correlator extends Router{
         this.salida2 = salida2;
     }
     
-    public void Correlacionar (){
+    public void Correlacionar () throws ParserConfigurationException{
         
-        Document doc=null;
         String disponibilidad = "";
+        DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
         
         for (int i = 0; i < entrada1.buffer.size(); i++) {
+            
+            Document doc = dBuilder.newDocument();
+            
             if((boolean)entrada2.bufferObject.get(i)){
                 disponibilidad = "yes";
             }

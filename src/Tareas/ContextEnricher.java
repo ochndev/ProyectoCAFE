@@ -9,6 +9,9 @@ import basededatos.Bebida;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -27,13 +30,19 @@ public class ContextEnricher extends Modifier{
     
     public ContextEnricher (Slots entrada1,Slots entrada2, Slots salida){
 
+        
         this.entrada1 = entrada1;
         this.entrada2 = entrada2;
         this.salida = salida;
         
     }
     
-    public void EnriquecerContexto(){
+    public void EnriquecerContexto() throws ParserConfigurationException{
+        
+                
+        DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
+        docenriquecido = dBuilder.newDocument();
         
         for(int i = 0; i<entrada1.buffer.size(); i++){
                 

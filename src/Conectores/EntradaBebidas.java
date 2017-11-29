@@ -16,8 +16,8 @@ public class EntradaBebidas {
     
     ControladorXML conXML;
     
-    public EntradaBebidas(ControladorXML conXML){
-        this.conXML = conXML;
+    public EntradaBebidas(){
+        this.conXML = new ControladorXML("src/FicheroEntrada/FicheroEntrada.xml","src/FicheroSalida/FicheroSalida.xml");
     }
     
     public void LeerComanda(Slots Salida){

@@ -5,6 +5,9 @@
  */
 package Tareas;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 
 /**
@@ -23,10 +26,17 @@ public class Translator extends Transformer {
         
     }
     
-    public void Translate(){
+    public void Translate() throws ParserConfigurationException{
+        
                 
+        DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
+        doc = dBuilder.newDocument();
+        
         for (int i = 0; i < entrada.buffer.size(); i++) {
             doc = entrada.getDocument(i);
+            System.out.println("En el Translator"+doc.getTextContent());
+            
             salida.setDocument(doc);
         }
         

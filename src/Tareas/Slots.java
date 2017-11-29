@@ -20,16 +20,16 @@ public class Slots {
     ArrayList<Object> bufferObject;
 
     public Slots(){
-        buffer = new ArrayList<Document>();
-        bufferString = new ArrayList<String>();
-        bufferObject = new ArrayList<Object>();
+        buffer = new ArrayList<>();
+        bufferString = new ArrayList<>();
+        bufferObject = new ArrayList<>();
     }
     
     public int buffersize(){
         return bufferObject.size();
     }
     
-    public Object getObject(int i){
+    public Object getObject(int i){        
         return bufferObject.get(i);
     }
     
@@ -38,6 +38,8 @@ public class Slots {
     }
     
     public Document getDocument(int i) {
+        
+        System.out.println("El documento "+i+" tiene: "+buffer.get(i).getTextContent());
         return buffer.get(i);
     }
 

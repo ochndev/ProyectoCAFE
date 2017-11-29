@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import basededatos.Bebida;
 import basededatos.ConexionBD;
 
 /**
@@ -22,27 +21,25 @@ import basededatos.ConexionBD;
 public class CamareroBebidasFrias {
     
     ConexionBD con;
-    ArrayList bebidas;
+    Slots entrada, salida;
     
     
-    public CamareroBebidasFrias(ConexionBD con){
-        this.con = con;
+    public CamareroBebidasFrias(){
+        this.con = new ConexionBD();
     }
     
     
-    public boolean ConsultarDisponibilidad(Bebida bebida, ConexionBD con){
+    private boolean ConsultarDisponibilidad(String consulta){
             
             int numero = 0;
-            Statement stmt = null;
-            
-            String consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = 'CocaCola' AND tipo = 'cold'";
-            
+            Statement stmt = null;           
             
             try {
                 stmt = con.getConnection().createStatement();
             } catch (SQLException ex) {
-                Logger.getLogger(CamareroBebidasCalientes.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CamareroBebidasFrias.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             
             try {
             ResultSet RS;
@@ -71,8 +68,16 @@ public class CamareroBebidasFrias {
         
     }
 
-    public void EjecutarQuerys(Slots slot, Slots slot0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void EjecutarQuerys(Slots IN, Slots OUT) {
+        
+        con.Conexion();
+        
+        for (int i = 0; i < IN.buffersize(); i++) {
+            OUT.setObject(ConsultarDisponibilidad(IN.getString(i)));            
+        }
+        
+        con.Desconexion();
+        
     }
     
 }

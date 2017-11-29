@@ -9,6 +9,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Templates;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -32,17 +35,20 @@ public class Aggregator extends Transformer {
         this.salida = salida;
     }
     
-    public void Aggregate(String xslFilename) throws FileNotFoundException{
+    public void Aggregate(String xslFilename) throws FileNotFoundException, ParserConfigurationException{
         
-        Document doc;
-        Document docSalida = null;
-        
+            DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+            Document docSalida = dBuilder.newDocument();
         //Aqui habria que aplicarle un estilo XSL para simplificarlo
         
         for (int i = 0; i < entrada.buffer.size(); i++) {
-                
+            doc = entrada.buffer.get(i);
             try {
-                DOMSource source = new DOMSource(entrada.buffer.get(i));
+                System.out.println("Contenido del buffer de entrada: "+doc.getTextContent());
+                
+                DOMSource source = new DOMSource(doc);
                 DOMResult result = new DOMResult(docSalida);
                 
                 // Create transformer factory

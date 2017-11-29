@@ -19,9 +19,9 @@ public class SalidaBebidas {
     
     ControladorXML conXML;
     
-    public SalidaBebidas(ControladorXML conXML){
+    public SalidaBebidas(){
         
-        this.conXML = conXML;
+        this.conXML = new ControladorXML("src/FicheroEntrada/FicheroEntrada.xml","src/FicheroSalida/FicheroSalida.xml");
         
     }
     

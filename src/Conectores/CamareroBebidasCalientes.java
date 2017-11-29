@@ -22,20 +22,23 @@ public class CamareroBebidasCalientes {
     ConexionBD con;
     
     
-    public CamareroBebidasCalientes(ConexionBD con){
-        this.con = con;
+    public CamareroBebidasCalientes(){
+        this.con = new ConexionBD();
     }
     
     public void EjecutarQuerys(Slots IN, Slots OUT){
         
+        con.Conexion();
+        
         for (int i = 0; i < IN.buffersize(); i++) {
-            OUT.setObject(ConsultarDisponibilidad(IN.getString(i),con));            
+            OUT.setObject(ConsultarDisponibilidad(IN.getString(i)));            
         }
         
+        con.Desconexion();        
     }
     
     
-    public boolean ConsultarDisponibilidad(String consulta, ConexionBD con){
+    private boolean ConsultarDisponibilidad(String consulta){
             
             int numero = 0;
             Statement stmt = null;           

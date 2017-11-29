@@ -40,34 +40,48 @@ public class Splitter extends Transformer{
             String xPathExpression = "/cafe_order/drinks";            
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc1 = dBuilder.newDocument();
+
             
+            Document doc = dBuilder.newDocument();
             
             for(int i=0; i<entrada.buffer.size() ; i++){
-                
+
                 doc = entrada.getDocument(i);
                 
                 NodeList nodos = doc.getElementsByTagName("drink");
                 
                     for (int j=0 ; j<nodos.getLength() ; j++){
+                        Document doc1 = dBuilder.newDocument();
+                        Node nod = nodos.item(j);
+                       
+                        Element bebida = null;
                         
-                        Node nod = nodos.item(i);
-                
+                        if (nod.getNodeType() == nod.ELEMENT_NODE) {
+                        bebida = (Element) nod;
+                        }
+                        
+                        
+                        String nombre = "";
+                        String tipo = "";
+                    //Element drinksElements = doc1.createElement("")
+                        
                     Element drinkElement = doc1.createElement("drink");
                     doc1.appendChild(drinkElement);
                            
                     Element nameElement = doc1.createElement("name");
-                    nameElement.appendChild(doc1.createTextNode(nodos.item(i).getNodeValue()));
+                    nameElement.appendChild(doc1.createTextNode("Cafe"));
                     drinkElement.appendChild(nameElement);
                 
                     Element typeElement = doc1.createElement("type");
-                    typeElement.appendChild(doc1.createTextNode(nodos.item(i).getNodeValue()));
+                    typeElement.appendChild(doc1.createTextNode("hot"));
                     drinkElement.appendChild(typeElement);
                 
-                        System.out.println(doc1.getElementsByTagName("*").item(i).getTextContent());
+                        System.out.println(doc1.getElementsByTagName("drink").item(j).getTextContent());
                         salida.setDocument(doc1);
-                        
+                        System.out.println("Splitter el contenido de salida es "+doc1.getTextContent());
                     }
+                    
+               
                     
             }
         } catch (ParserConfigurationException ex) {

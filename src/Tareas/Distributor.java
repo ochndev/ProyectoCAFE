@@ -36,21 +36,28 @@ public class Distributor extends Router {
 
     }
 
-    public Distributor(Slots in, Slots out1, Slots out2) {
+    public Distributor(Slots in, Slots out1, Slots out2) throws ParserConfigurationException {
 
+
+        
         this.in = in;
         this.out1 = out1;
         this.out2 = out2;
         
     }
 
-    public void Distribuir(Slots entrada, Slots salida1, Slots salida2) {
+    public void Distribuir(Slots entrada, Slots salida1, Slots salida2) throws ParserConfigurationException {
+        
+        DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        doc = dBuilder.newDocument();
         
         String compara="";
         
         for(int i = 0 ; i < entrada.buffer.size(); i++){
+            doc = entrada.getDocument(i);
             
-            System.out.println(entrada.getDocument(i).getElementsByTagName("*").item(0).getTextContent());
+            System.out.println("Distribuidor: "+doc.getTextContent());
         
             if(compara.compareTo("cold") == 0){
                 salida1.setDocument(entrada.buffer.get(i));

@@ -6,6 +6,9 @@
 package Tareas;
 
 import java.io.FileInputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Templates;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
@@ -27,10 +30,15 @@ public class TranslatorSQL {
         this.OUT = OUT;
     }
     
-    public void translate(){
+    public void translate() throws ParserConfigurationException{
         
         for (int i = 0; i < IN.buffer.size(); i++) {
-             
+            
+                    
+            DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
+            docaux = dBuilder.newDocument();
+            
             String nombre = "", tipo = "", consulta = "";            
             docaux = IN.getDocument(i);
             nombre = docaux.getElementsByTagName("name").item(0).getTextContent();
