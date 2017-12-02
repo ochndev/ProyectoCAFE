@@ -19,7 +19,6 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  *
@@ -29,6 +28,7 @@ public class Aggregator extends Transformer {
     
     Slots entrada, salida;
     String xslFilename;
+    Document doc;
     
     public Aggregator(Slots entrada, Slots salida){
         this.entrada = entrada;
@@ -39,7 +39,7 @@ public class Aggregator extends Transformer {
         
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.newDocument();
+            
             Document docSalida = dBuilder.newDocument();
         //Aqui habria que aplicarle un estilo XSL para simplificarlo
         
