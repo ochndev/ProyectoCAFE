@@ -7,7 +7,6 @@ package Tareas;
 
 import java.util.ArrayList;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 /**
  *
@@ -16,46 +15,38 @@ import org.w3c.dom.Node;
 public class Slots {
     
    // ArrayList<Document> buffer;
-    private ArrayList<String> bufferString;
-    private ArrayList<Object> bufferObject;
-    private ArrayList<Document> buffer;
+    private ArrayList<Object> buffer;
 
     public Slots(){
         buffer = new ArrayList<>();
-        bufferString = new ArrayList<>();
-        bufferObject = new ArrayList<>();
     }
     
     public int buffersize(){
-        return bufferObject.size();
+        return buffer.size();
+    }
+    
+    public void setObject(Object OBJ){
+        buffer.add(OBJ);
     }
     
     public Object getObject(int i){        
-        return bufferObject.get(i);
-    }
-    
-    public void setObject(Object Obj){
-        this.bufferObject.add(Obj);
+        return buffer.get(i);
     }
     
     public Document getDocument(int i) {
-        return buffer.get(i);
+        return (Document)buffer.get(i);
     }
 
-    public void setDocument(Document doc) {
-        buffer.add(doc);
+    public void setDocument(Document OBJ) {
+        buffer.add(OBJ);
     }
     
     public String getString(int i) {
-        return bufferString.get(i);
+        return (String)buffer.get(i);
     }
 
     public void setString(String doc) {
-        bufferString.add(doc);
-    }
-    
-    public int tamanyo(){
-        return buffer.size();
+        buffer.add(doc);
     }
 
 }

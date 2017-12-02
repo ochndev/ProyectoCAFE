@@ -65,12 +65,12 @@ public class ProyectoCAFE {
             //Creamos la tarea splitter
             // Dividimos con el splitter dependiendo si es bebida fria o caliente
             Splitter SP = new Splitter(slots[1], slots[2]);
-            SP.Splittear();
+            SP.Split();
             
             //Creamos la tarea distributos y distribuimos en dos ramas
             Distributor DIST;
             DIST = new Distributor(slots[2],slots[3],slots[4]);
-            DIST.Distribuir(slots[2], slots[3], slots[4]);
+            DIST.Distribute(slots[2], slots[3], slots[4]);
             
             
             //Creamos los replicators y replicamos las bebidas frias y calientes respectivamente
@@ -92,7 +92,7 @@ public class ProyectoCAFE {
             CRL1.Correlacionar();
             //Enriquecemos
             ContextEnricher CEN1 = new ContextEnricher(slots[13],slots[14],slots[15]);
-            CEN1.EnriquecerContexto();
+            CEN1.EnrichContext();
             
             
             //Traducimos para obtener acceder a BD de bebidas frias
@@ -108,11 +108,11 @@ public class ProyectoCAFE {
             
             //Enriquecemos
             ContextEnricher CEN = new ContextEnricher(slots[17],slots[18],slots[19]);
-            CEN.EnriquecerContexto();
+            CEN.EnrichContext();
             
             //Mezclamos
-            Merge MRG = new Merge(slots[15],slots[19],slots[20]);
-            MRG.Mezclar();
+            Merger MRG = new Merger(slots[15],slots[19],slots[20]);
+            MRG.Merge();
             
             
             // Agregamos utilizando un estilo
@@ -122,12 +122,11 @@ public class ProyectoCAFE {
             //Por ultimo generamos el archivo XML final con el conector SalidaBebidas
             SB.EscribirBebidasDisponibles(slots[21]);
             
-            
-        } catch (XPathExpressionException ex) {
-            Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (XPathExpressionException ex) {
             Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
         }
         

@@ -41,9 +41,10 @@ public class Aggregator extends Transformer {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             
             Document docSalida = dBuilder.newDocument();
-        //Aqui habria que aplicarle un estilo XSL para simplificarlo
         
-        for (int i = 0; i < entrada.tamanyo(); i++) {
+        //Aqui aplicamos un estilo XSL
+        
+        for (int i = 0; i < entrada.buffersize(); i++) {
             doc = entrada.getDocument(i);
             try {
                 System.out.println("Contenido del buffer de entrada: "+doc.getTextContent());

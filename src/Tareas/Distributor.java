@@ -23,8 +23,6 @@ public class Distributor extends Router {
     }
 
     public Distributor(Slots in, Slots out1, Slots out2) throws ParserConfigurationException {
-
-
         
         this.in = in;
         this.out1 = out1;
@@ -32,15 +30,15 @@ public class Distributor extends Router {
         
     }
 
-    public void Distribuir(Slots entrada, Slots salida1, Slots salida2) throws ParserConfigurationException {
+    public void Distribute(Slots entrada, Slots salida1, Slots salida2) throws ParserConfigurationException {
         
-        for(int i = 0 ; i < entrada.tamanyo(); i++){
+        for(int i = 0 ; i < entrada.buffersize(); i++){
             
             doc = entrada.getDocument(i);
         
-            String compara = doc.getElementsByTagName("type").item(0).getTextContent();
+            condicion = doc.getElementsByTagName("type").item(0).getTextContent();
             
-            if("cold".equals(compara)){
+            if("cold".equals(condicion)){
                 salida1.setDocument(doc);
             }
             else{

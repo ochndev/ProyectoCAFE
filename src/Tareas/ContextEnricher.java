@@ -5,8 +5,6 @@
  */
 package Tareas;
 
-import basededatos.Bebida;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -37,14 +35,14 @@ public class ContextEnricher extends Modifier{
         
     }
     
-    public void EnriquecerContexto() throws ParserConfigurationException{
+    public void EnrichContext() throws ParserConfigurationException{
         
                 
         DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
         docenriquecido = dBuilder.newDocument();
         
-        for(int i = 0; i<entrada1.tamanyo(); i++){
+        for(int i = 0; i<entrada1.buffersize(); i++){
                 
                 Element drinkElement = docenriquecido.createElement("drink");
                 drinkElement.appendChild(drinkElement);

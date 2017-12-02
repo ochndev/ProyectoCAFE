@@ -33,16 +33,16 @@ public class Splitter extends Transformer{
         this.salida = salida;
     }
     
-    public void Splittear() throws XPathExpressionException{
+    public void Split() throws XPathExpressionException{
         
         
         try {
-            String xPathExpression = "/cafe_order/drinks";            
+            String xPathExpression = "/cafe_order/drinks";
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             
             
-            for(int i=0; i<entrada.tamanyo(); i++){
+            for(int i=0; i<entrada.buffersize(); i++){
                 
                     NodeList nodostipo = entrada.getDocument(i).getElementsByTagName("type");
                     NodeList nodosnombre = entrada.getDocument(i).getElementsByTagName("name");
@@ -51,18 +51,18 @@ public class Splitter extends Transformer{
                     for (int j=0 ; j<nodostipo.getLength(); j++){
 
                         
-                    Document doc1 = dBuilder.newDocument();
-                        
-                    Element drinkElement = doc1.createElement("drink");
-                    doc1.appendChild(drinkElement);
-                           
-                    Element nameElement = doc1.createElement("name");
-                    nameElement.appendChild(doc1.createTextNode(nodosnombre.item(j).getTextContent()));
-                    drinkElement.appendChild(nameElement);
-                
-                    Element typeElement = doc1.createElement("type");
-                    typeElement.appendChild(doc1.createTextNode(nodostipo.item(j).getTextContent()));
-                    drinkElement.appendChild(typeElement);
+                        Document doc1 = dBuilder.newDocument();
+
+                        Element drinkElement = doc1.createElement("drink");
+                        doc1.appendChild(drinkElement);
+
+                        Element nameElement = doc1.createElement("name");
+                        nameElement.appendChild(doc1.createTextNode(nodosnombre.item(j).getTextContent()));
+                        drinkElement.appendChild(nameElement);
+
+                        Element typeElement = doc1.createElement("type");
+                        typeElement.appendChild(doc1.createTextNode(nodostipo.item(j).getTextContent()));
+                        drinkElement.appendChild(typeElement);
                 
                         System.out.println(doc1.getFirstChild().getFirstChild().getTextContent());
                         System.out.println(doc1.getLastChild().getLastChild().getTextContent());

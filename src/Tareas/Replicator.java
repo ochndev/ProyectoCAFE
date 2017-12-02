@@ -21,15 +21,15 @@ public class Replicator extends Router{
     }
     
     public void Replicar (Slots in, Slots out1, Slots out2) throws ParserConfigurationException{
-        for(int i = 0; i< in.tamanyo();i++){
+        for(int i = 0; i< in.buffersize();i++){
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();            
             Document doc1 = dBuilder.newDocument();
             Document doc2 = dBuilder.newDocument();
             doc1 = in.getDocument(i);
             doc2 = in.getDocument(i);
-            out1.setDocument(in.getDocument(i));
-            out2.setDocument(in.getDocument(i));
+            out1.setDocument(doc1);
+            out2.setDocument(doc2);
         }
     }
     

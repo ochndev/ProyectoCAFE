@@ -14,24 +14,24 @@ import org.w3c.dom.Document;
  *
  * @author Hannibal
  */
-public class Merge extends Router{
+public class Merger extends Router{
     
     private Slots entrada1, entrada2, salida;
     
-    public Merge (Slots entrada1,Slots entrada2, Slots salida){
+    public Merger (Slots entrada1,Slots entrada2, Slots salida){
           
         this.entrada1 = entrada1;
         this.entrada2 = entrada2;
         this.salida = salida;        
     }
     
-    public void Mezclar() throws ParserConfigurationException{
+    public void Merge() throws ParserConfigurationException{
         
-        for(int i = 0; i<entrada1.tamanyo(); i++){
+        for(int i = 0; i<entrada1.buffersize(); i++){
             salida.setDocument(entrada1.getDocument(i));
         }
         
-        for(int j = 0; j<entrada2.tamanyo(); j++){
+        for(int j = 0; j<entrada2.buffersize(); j++){
             salida.setDocument(entrada1.getDocument(j));
         }
         
