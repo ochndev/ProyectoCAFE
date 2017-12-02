@@ -42,6 +42,8 @@ public class Splitter extends Transformer{
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             
             
+            System.out.println("Separando");
+            
             for(int i=0; i<entrada.buffersize(); i++){
                 
                     NodeList nodostipo = entrada.getDocument(i).getElementsByTagName("type");

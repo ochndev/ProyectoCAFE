@@ -22,6 +22,8 @@ import org.w3c.dom.Element;
  */
 public class ContextEnricher extends Modifier{
     
+    Document doc;
+    Document doc2;
     Document docenriquecido;
     Slots entrada1, entrada2;
     Slots salida;
@@ -40,24 +42,36 @@ public class ContextEnricher extends Modifier{
                 
         DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
-        docenriquecido = dBuilder.newDocument();
+
+        
+        System.out.println("Enriqueciendo contexto");
         
         for(int i = 0; i<entrada1.buffersize(); i++){
-                
-                Element drinkElement = docenriquecido.createElement("drink");
-                drinkElement.appendChild(drinkElement);
+            
+            docenriquecido = dBuilder.newDocument();
+            doc = entrada1.getDocument(i);
+            doc2 = entrada2.getDocument(i);
+            
+            Element drinkElement = docenriquecido.createElement("drink");
+            docenriquecido.appendChild(drinkElement);
                            
-                Element nameElement = docenriquecido.createElement("name");
-                nameElement.appendChild(docenriquecido.createTextNode(entrada1.getDocument(i).getElementsByTagName("name").item(0).getTextContent()));
-                drinkElement.appendChild(nameElement);
+            Element nameElement = docenriquecido.createElement("name");
+            nameElement.appendChild(docenriquecido.createTextNode(doc.getElementsByTagName("name").item(0).getTextContent()));
+            drinkElement.appendChild(nameElement);
+                
+            Element typeElement = docenriquecido.createElement("type");
+            typeElement.appendChild(docenriquecido.createTextNode(doc.getElementsByTagName("type").item(0).getTextContent()));
+            drinkElement.appendChild(typeElement);
                             
-                Element availableElement = docenriquecido.createElement("availability");
-                nameElement.appendChild(docenriquecido.createTextNode(entrada1.getDocument(i).getElementsByTagName("availability").item(0).getTextContent()));
-                drinkElement.appendChild(availableElement);
+            Element availableElement = docenriquecido.createElement("available");
+            availableElement.appendChild(docenriquecido.createTextNode(doc2.getElementsByTagName("available").item(0).getTextContent()));
+            drinkElement.appendChild(availableElement);
+            
+            salida.setDocument(this.docenriquecido);
             
         }
         
-        salida.setDocument(this.docenriquecido);
+
         
         
         

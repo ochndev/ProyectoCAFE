@@ -26,14 +26,18 @@ public class Correlator extends Router{
         this.salida2 = salida2;
     }
     
-    public void Correlacionar () throws ParserConfigurationException{
+    public void Correlate () throws ParserConfigurationException{
         
         String disponibilidad = "";
         DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
         
+        System.out.println("Correlacionando");
+        
         for (int i = 0; i < entrada1.buffersize(); i++) {
+            
+            
             
             Document doc = dBuilder.newDocument();
             
@@ -42,11 +46,14 @@ public class Correlator extends Router{
             }
             else disponibilidad = "no";
             
-            Element availableElement = doc.createElement("availability");
-            availableElement.appendChild(doc.createTextNode(disponibilidad));
             
-            salida1.setDocument(doc);
-            salida2.setDocument(entrada1.getDocument(i));
+            
+            Element availableElement = doc.createElement("available");
+            availableElement.appendChild(doc.createTextNode(disponibilidad));
+            doc.appendChild(availableElement);
+            
+            salida1.setDocument(entrada1.getDocument(i));
+            salida2.setDocument(doc);
         }
         
     }

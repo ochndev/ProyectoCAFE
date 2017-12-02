@@ -27,12 +27,14 @@ public class Merger extends Router{
     
     public void Merge() throws ParserConfigurationException{
         
+        System.out.println("Mezclando");
+        
         for(int i = 0; i<entrada1.buffersize(); i++){
             salida.setDocument(entrada1.getDocument(i));
         }
         
         for(int j = 0; j<entrada2.buffersize(); j++){
-            salida.setDocument(entrada1.getDocument(j));
+            salida.setDocument(entrada2.getDocument(j));
         }
         
     }

@@ -7,7 +7,6 @@ package proyectocafe;
 
 import Conectores.ControladorXML;
 import basededatos.ConexionBD;
-import basededatos.Bebida;
 import Conectores.*;
 import Tareas.*;
 import java.io.FileNotFoundException;
@@ -88,8 +87,9 @@ public class ProyectoCAFE {
             CBC.EjecutarQuerys(slots[9], slots[11]);
             
             //Correlacionamos
-            Correlator CRL1 = new Correlator(slots[9], slots[11],slots[13],slots[14]);
-            CRL1.Correlacionar();
+            Correlator CRL1 = new Correlator(slots[5], slots[11],slots[13],slots[14]);
+            CRL1.Correlate();
+            
             //Enriquecemos
             ContextEnricher CEN1 = new ContextEnricher(slots[13],slots[14],slots[15]);
             CEN1.EnrichContext();
@@ -103,8 +103,8 @@ public class ProyectoCAFE {
             CBF.EjecutarQuerys(slots[10],slots[16]);
             
             //Correlacionamos
-            Correlator CRL2 = new Correlator(slots[10],slots[16],slots[17],slots[18]);
-            CRL2.Correlacionar();
+            Correlator CRL2 = new Correlator(slots[7],slots[16],slots[17],slots[18]);
+            CRL2.Correlate();
             
             //Enriquecemos
             ContextEnricher CEN = new ContextEnricher(slots[17],slots[18],slots[19]);
@@ -128,10 +128,7 @@ public class ProyectoCAFE {
             Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
         } catch (XPathExpressionException ex) {
             Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
+        }        
         
     }
     

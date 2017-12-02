@@ -33,6 +33,8 @@ public class Translator extends Transformer {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();           
         doc = dBuilder.newDocument();
         
+        System.out.println("Traduciendo");
+        
         for (int i = 0; i < entrada.buffersize(); i++) {
             doc = entrada.getDocument(i);           
             salida.setDocument(doc);

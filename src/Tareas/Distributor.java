@@ -32,6 +32,8 @@ public class Distributor extends Router {
 
     public void Distribute(Slots entrada, Slots salida1, Slots salida2) throws ParserConfigurationException {
         
+        System.out.println("Distribuyendo");
+        
         for(int i = 0 ; i < entrada.buffersize(); i++){
             
             doc = entrada.getDocument(i);

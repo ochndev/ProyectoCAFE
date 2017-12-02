@@ -9,7 +9,6 @@ import Tareas.Slots;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import basededatos.ConexionBD;
@@ -47,7 +46,6 @@ public class CamareroBebidasFrias {
             
             while(RS.next()){
                 numero = RS.getInt(1);
-                System.out.println("El numero de bebidas frias es: "+numero);
             }
             
             RS.close();
@@ -59,12 +57,7 @@ public class CamareroBebidasFrias {
             Logger.getLogger(CamareroBebidasCalientes.class.getName()).log(Level.SEVERE, null, ex);
         }   
             
-            if(numero > 0){
-                return true;
-            }else
-            {
-                return false;
-            }
+        return numero > 0;
         
     }
 

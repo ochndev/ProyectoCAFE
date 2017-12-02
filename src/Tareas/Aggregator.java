@@ -19,6 +19,8 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -39,40 +41,54 @@ public class Aggregator extends Transformer {
         
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            
-            Document docSalida = dBuilder.newDocument();
+
+
         
         //Aqui aplicamos un estilo XSL
         
+        System.out.println("Agregando");
+        
         for (int i = 0; i < entrada.buffersize(); i++) {
+            
+            Document docAux = dBuilder.newDocument();            
+            Document docSalida = dBuilder.newDocument();
             doc = entrada.getDocument(i);
-            try {
-                System.out.println("Contenido del buffer de entrada: "+doc.getTextContent());
+            NodeList nodosnombre = doc.getElementsByTagName("name");
+            NodeList nodostipo = doc.getElementsByTagName("type");
+            NodeList nodosdisponible = doc.getElementsByTagName("available");
+            
+            //Creamos un documento nuevo mezclando las entradas del buffer
+            
+            Element orderElement = docAux.createElement("cafe_order");
+            docAux.appendChild(orderElement);
+            
+            Element orderIdElement = docAux.createElement("order_id");
+            orderElement.appendChild(orderIdElement);
+            
+            Element drinksElement = docAux.createElement("drinks");
+            orderElement.appendChild(drinksElement);
+            
+            for (int j = 0 ; j < nodosnombre.getLength(); j++){
                 
-                DOMSource source = new DOMSource(doc);
-                DOMResult result = new DOMResult(docSalida);
+                Element drinkElement = docAux.createElement("drink");
+                drinksElement.appendChild(drinkElement);
+
+                Element nameElement = docAux.createElement("name");
+                nameElement.appendChild(docAux.createTextNode(nodosdisponible.item(j).getTextContent()));
+                drinkElement.appendChild(nameElement);
+
+                Element typeElement = docAux.createElement("type");
+                typeElement.appendChild(docAux.createTextNode(nodostipo.item(j).getTextContent()));
+                drinkElement.appendChild(typeElement);
                 
-                // Create transformer factory
-                TransformerFactory factory = TransformerFactory.newInstance();
-                
-                // Use the factory to create a template containing the xsl file
-                Templates template = factory.newTemplates(new StreamSource(
-                        new FileInputStream(xslFilename)));
-                
-                // Use the template to create a transformer
-                javax.xml.transform.Transformer xformer = template.newTransformer();
-                            
-                xformer.transform(source, result);
-                
-            } catch (TransformerException ex) {
-                Logger.getLogger(Aggregator.class.getName()).log(Level.SEVERE, null, ex);
+                Element availableElement = docAux.createElement("available");
+                availableElement.appendChild(docAux.createTextNode(nodosdisponible.item(j).getTextContent()));
+                drinkElement.appendChild(availableElement);
             }
             
             salida.setDocument(docSalida);
-            
+
         }
-        
     }
-    
     
 }

@@ -26,6 +26,8 @@ public class TranslatorSQL {
     
     public void translate() throws ParserConfigurationException{
         
+        System.out.println("Traduciendo SQL");
+        
         for (int i = 0; i < IN.buffersize(); i++) {
             
                     
@@ -38,7 +40,7 @@ public class TranslatorSQL {
             nombre = docaux.getElementsByTagName("name").item(0).getTextContent();
             tipo = docaux.getElementsByTagName("type").item(0).getTextContent();
             
-            consulta = "SELECT COUNT(*) FROM BEBIDAS WHERE nombre = '"+nombre+"' AND tipo = '"+tipo+"'";
+            consulta = "select count(*) from bebidas where name = '"+nombre+"' and type = '"+tipo+"'";
             
             OUT.setString(consulta);
             

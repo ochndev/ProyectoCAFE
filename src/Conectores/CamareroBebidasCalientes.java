@@ -7,10 +7,8 @@ package Conectores;
 
 import Tareas.Slots;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import basededatos.Bebida;
 import basededatos.ConexionBD;
 
 /**
@@ -56,7 +54,6 @@ public class CamareroBebidasCalientes {
             
             while(RS.next()){
                 numero = RS.getInt(1);
-                System.out.println("El numero de bebidas calientes es: "+numero);
             }
             
             RS.close();

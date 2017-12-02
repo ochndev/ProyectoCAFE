@@ -21,6 +21,9 @@ public class Replicator extends Router{
     }
     
     public void Replicar (Slots in, Slots out1, Slots out2) throws ParserConfigurationException{
+        
+        System.out.println("Replicando");
+        
         for(int i = 0; i< in.buffersize();i++){
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();            
