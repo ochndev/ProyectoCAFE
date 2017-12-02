@@ -50,20 +50,18 @@ public class Distributor extends Router {
         
         DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        doc = dBuilder.newDocument();
-        
-        String compara="";
         
         for(int i = 0 ; i < entrada.tamanyo(); i++){
-            doc = entrada.getDocument(i);
             
-            System.out.println("Distribuidor: "+doc.getTextContent());
+            doc = entrada.getDocument(i);
         
-            if(compara.compareTo("cold") == 0){
-                salida1.setDocument(entrada.getDocument(i));
+            String compara = doc.getElementsByTagName("type").item(0).getTextContent();
+            
+            if("cold".equals(compara)){
+                salida1.setDocument(doc);
             }
             else{
-                salida2.setDocument(entrada.getDocument(i));
+                salida2.setDocument(doc);
             }
         }
         

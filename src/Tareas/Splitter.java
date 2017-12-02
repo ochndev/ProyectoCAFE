@@ -40,57 +40,33 @@ public class Splitter extends Transformer{
             String xPathExpression = "/cafe_order/drinks";            
             DocumentBuilderFactory dbFactory  = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-            
-            //Document doc = dBuilder.newDocument();
             
             
             for(int i=0; i<entrada.tamanyo(); i++){
-                System.out.println("Splitter, cosas en el buffer: "+entrada.tamanyo());
-                doc = entrada.getDocument(i);
                 
-                NodeList nodos = doc.getElementsByTagName("drink");
-                System.out.println("Splitter Tamaño buffer: "+i+"Nodos: "+nodos.getLength());
-                    for (int j=0 ; j<nodos.getLength(); j++){
+                    NodeList nodostipo = entrada.getDocument(i).getElementsByTagName("type");
+                    NodeList nodosnombre = entrada.getDocument(i).getElementsByTagName("name");
+                    
+                
+                    for (int j=0 ; j<nodostipo.getLength(); j++){
 
                         
-                        Document doc1 = dBuilder.newDocument();
-                        Node nod = nodos.item(j);
-                        NodeList typeList = doc1.getElementsByTagName("type");
-                        nodos.item(j);
-                        
-                        ary ñ oq he
-                        
-                        System.out.println("Splitter, nombre de nodo: "+nod.getTextContent());//Hasta aqui funciona
-                        if (nod.getNodeType() == nod.ELEMENT_NODE) {
-                            Element be= (Element) nod;
-                            System.out.println("+++Splitter, bebidas: "+be.getTextContent());
-                        }
-                        
-                        
-                        Element bebida = null;
-                        
-
-                        
-                        
-                        String nombre = "";
-                        String tipo = "";
-                    //Element drinksElements = doc1.createElement("")
+                    Document doc1 = dBuilder.newDocument();
                         
                     Element drinkElement = doc1.createElement("drink");
                     doc1.appendChild(drinkElement);
                            
                     Element nameElement = doc1.createElement("name");
-                    nameElement.appendChild(doc1.createTextNode("Cafe"));
+                    nameElement.appendChild(doc1.createTextNode(nodosnombre.item(j).getTextContent()));
                     drinkElement.appendChild(nameElement);
                 
                     Element typeElement = doc1.createElement("type");
-                    typeElement.appendChild(doc1.createTextNode("hot"));
+                    typeElement.appendChild(doc1.createTextNode(nodostipo.item(j).getTextContent()));
                     drinkElement.appendChild(typeElement);
                 
-                        System.out.println(doc1.getElementsByTagName("drink").item(j).getTextContent());
+                        System.out.println(doc1.getFirstChild().getFirstChild().getTextContent());
+                        System.out.println(doc1.getLastChild().getLastChild().getTextContent());
                         salida.setDocument(doc1);
-                        System.out.println("Splitter el contenido de salida es "+doc1.getTextContent());
                     }
                     
                

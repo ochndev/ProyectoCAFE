@@ -112,7 +112,7 @@ public class ProyectoCAFE {
             
             //Mezclamos
             Merge MRG = new Merge(slots[15],slots[19],slots[20]);
-            MRG.Merge();
+            MRG.Mezclar();
             
             
             // Agregamos utilizando un estilo
