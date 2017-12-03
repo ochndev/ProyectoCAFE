@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Source;
 import javax.xml.transform.Templates;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.Transformer;
@@ -65,32 +66,21 @@ public class ControladorXML {
         String nom_fich= "src/FicheroSalida/FicheroSalida.xml";
         String xslFilename = "src/FicheroXSL/FicheroXSL.xsl";
         
-            try {
+        
+            /*try {
                 
-                DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File(nom_fich));
-                
-                // Create transformer factory
                 TransformerFactory factory = TransformerFactory.newInstance();
+                Source xslt = new StreamSource(new File(xslFilename));
+                Transformer transformer = factory.newTransformer(xslt);
 
-                // Use the factory to create a template containing the xsl file
-                Templates template = factory.newTemplates(new StreamSource(
-                new FileInputStream(xslFilename)));
-
-                // Use the template to create a transformer
-                javax.xml.transform.Transformer xformer = template.newTransformer();
-
-                xformer.transform(source, result);
-                
-                //Output to cosole for testing
-                StreamResult consoleResult = new StreamResult(System.out);
-                xformer.transform(source, consoleResult);
-
+                DOMSource text = new DOMSource(doc);
+                transformer.transform(text, new StreamResult(new File(nom_fich)));
+            
             } catch (TransformerException ex) {
                 Logger.getLogger(Aggregator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         
-        /*try {
+        try {
             
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -104,6 +94,6 @@ public class ControladorXML {
             
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(ControladorXML.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }
 }

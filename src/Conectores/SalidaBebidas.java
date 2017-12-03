@@ -6,6 +6,7 @@
 package Conectores;
 
 import Tareas.Slots;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.transform.TransformerException;
@@ -25,13 +26,11 @@ public class SalidaBebidas {
         
     }
     
-    public void EscribirBebidasDisponibles (Slots IN){
-        
-        //Leemos del puerto de entrada
-        Document doc = IN.getDocument(0);
+    public void EscribirBebidasDisponibles (Slots IN) throws FileNotFoundException{
         
         try {
-            conXML.EscribirXML(doc);
+            //Leemos del puerto de entrada
+            conXML.EscribirXML(IN.getDocument(0));
         } catch (TransformerException ex) {
             Logger.getLogger(SalidaBebidas.class.getName()).log(Level.SEVERE, null, ex);
         }
