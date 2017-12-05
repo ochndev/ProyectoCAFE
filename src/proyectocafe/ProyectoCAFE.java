@@ -5,17 +5,13 @@
  */
 package proyectocafe;
 
-import Conectores.ControladorXML;
-import basededatos.ConexionBD;
 import Conectores.*;
 import Tareas.*;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
-import org.w3c.dom.Document;
 
 /**
  *
@@ -26,19 +22,13 @@ public class ProyectoCAFE {
     /**
      * @param args the command line arguments
      */
-    
    
-    
     public static void main(String[] args) {
         
         try {
             String xslFilename = "src/FicheroXSL/FicheroXSL.xsl";
             
-            //Creamos e inicializamos los slots
-            Slots[] slots = new Slots[25];
-            for (int i = 0; i < slots.length; i++) {
-                slots[i] = new Slots();
-            }
+            Slots[] slots = InicializarSlots();
             
             // Creamos el conector CamareroBebidasCalientes
             
@@ -130,6 +120,17 @@ public class ProyectoCAFE {
             Logger.getLogger(ProyectoCAFE.class.getName()).log(Level.SEVERE, null, ex);
         }        
         
+    }
+    
+    public static Slots[] InicializarSlots(){
+                    //Creamos e inicializamos los slots
+            Slots[] slots = new Slots[22];
+            for (int i = 0; i < slots.length; i++) {
+                slots[i] = new Slots();
+            }
+            
+            return slots;
+            
     }
     
 }
